@@ -123,7 +123,6 @@ function App() {
     <main className="app">
       <header className="header">
         <h1>Photo Upload Smart Selection</h1>
-        <p>Simple React + Node app with latest-upload-only behavior.</p>
       </header>
 
       <section className="card">
@@ -273,7 +272,7 @@ function App() {
       </section>
 
       <section className="card">
-        <h2>Structured JSON Preview ({allPhotos.length})</h2>
+        <h2>Structured JSON Preview</h2>
         <pre>{JSON.stringify(jsonPreviewData, null, 2)}</pre>
       </section>
     </main>

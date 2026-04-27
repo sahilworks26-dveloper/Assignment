@@ -173,8 +173,9 @@ pre {
   max-height: 340px;
   overflow: auto;
   border-radius: 10px;
-  background: #0f172a;
-  color: #e2e8f0;
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #d1d5db;
   padding: 12px;
   font-size: 0.82rem;
 }

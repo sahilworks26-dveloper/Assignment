@@ -32,7 +32,10 @@ app.use(
 );
 app.use(express.json());
 app.use((_, res, next) => {
-  res.set("Cache-Control", "no-store, no-cache, must-revalidate, proxy-revalidate");
+  res.set(
+    "Cache-Control",
+    "no-store, no-cache, must-revalidate, proxy-revalidate",
+  );
   res.set("Pragma", "no-cache");
   res.set("Expires", "0");
   next();
@@ -87,7 +90,9 @@ app.post("/api/photos/upload", upload.array("photos", 100), (req, res) => {
     try {
       driveLinks = JSON.parse(rawLinks);
       if (!Array.isArray(driveLinks)) {
-        return res.status(400).json({ message: "driveLinks must be an array." });
+        return res
+          .status(400)
+          .json({ message: "driveLinks must be an array." });
       }
     } catch (error) {
       return res.status(400).json({ message: "Invalid driveLinks JSON." });
@@ -96,10 +101,14 @@ app.post("/api/photos/upload", upload.array("photos", 100), (req, res) => {
 
   const incomingTotal = uploadedFiles.length + driveLinks.length;
   if (incomingTotal === 0) {
-    return res.status(400).json({ message: "Please upload at least one file or drive link." });
+    return res
+      .status(400)
+      .json({ message: "Please upload at least one file or drive link." });
   }
   if (incomingTotal > 100) {
-    return res.status(400).json({ message: "Maximum 100 photos allowed per upload." });
+    return res
+      .status(400)
+      .json({ message: "Maximum 100 photos allowed per upload." });
   }
 
   const localPhotos = uploadedFiles.map((file) => {
@@ -144,7 +153,11 @@ app.get("/api/photos/selected", (req, res) => {
   const limit = Number(req.query.limit ?? 12);
 
   const selected = latestPhotos
-    .filter((photo) => photo.attributes.smileScore >= minSmile && photo.attributes.faceCount <= maxFaces)
+    .filter(
+      (photo) =>
+        photo.attributes.smileScore >= minSmile &&
+        photo.attributes.faceCount <= maxFaces,
+    )
     .sort((a, b) => b.score - a.score)
     .slice(0, limit);
 
